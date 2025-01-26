@@ -1,7 +1,9 @@
+import { HeroSection } from "./_components/pages/home/hero-section";
+
 export default async function Home() {
   return (
     <>
-      <h1>Home Page</h1>
+      <HeroSection />
     </>
   )
 }
