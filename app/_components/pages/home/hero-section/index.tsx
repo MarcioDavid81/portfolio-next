@@ -1,11 +1,36 @@
 import { Button } from "@/app/_components/button";
 import TechBadge from "@/app/_components/tech-badge";
 import Image from "next/image";
+import {  HiArrowNarrowRight } from "react-icons/hi";
+import { TbBrandFacebook, TbBrandGithub, TbBrandInstagram, TbBrandLinkedin } from "react-icons/tb";
+
+const MOCK_SOCIAL = [
+  {
+    name: "GitHub",
+    url: "https://github.com/MarcioDavid81",
+    icon: <TbBrandGithub />,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/marcio-david-a8152733/",
+    icon: <TbBrandLinkedin />,
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/marcio.david.754",
+    icon: <TbBrandFacebook />,
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/o_marciodavid/",
+    icon: <TbBrandInstagram />,
+  }
+]
 
 export const HeroSection = () => {
   return (
     <>
-    <section className="w-full lg:h-[755px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-8 lg:pb-{110px]">
+    <section className="w-full lg:h-[875px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-8 lg:pb-{110px]">
       <div className="container flex items-start justify-between flex-col-reverse lg:flex-row">
         <div className="w-full lg:max-w-[530px]">
           <p className="font-mono">Hello world!</p>
@@ -40,8 +65,24 @@ export const HeroSection = () => {
               <TechBadge  key={index} name="JavaScript" />
             ))}
           </div>
-          <div className="mt-5">
-            <Button>Entre em contato</Button>
+          <div className="mt-6 lg:mt-10 flex sm:items-center sm:gap-5 sm:flex-row flex-col">
+            <Button className="shadow-button w-max">
+              Entre em contato
+              <HiArrowNarrowRight size={18} />
+            </Button>
+            <div className="text-2xl text-primary flex items-center h-20 gap-3 md:text-4xl">
+              {MOCK_SOCIAL.map((social, index) => (
+                <a
+                  key={`social-${index}`}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-gray-100 transition-colors"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
         <Image
