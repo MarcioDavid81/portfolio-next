@@ -12,16 +12,73 @@
   @apply mx-auto w-full max-w-[1200px] px-6
 }
 
+.txt-animado {
+  font-size: 3em;
+  font-weight: 300;
+}
+
+.txt-animado span{
+  position: relative;
+}
+.txt-animado span::before{
+  content: "";
+  color: #fbbb2f;
+  animation: palavras 20s linear infinite;
+}
+.txt-animado span::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-left: 4px solid #fbbb2f;
+  right: -10px;
+  animation: piscar 0.7s linear infinite;
+  width: calc(100% + 17px);
+  background-image: linear-gradient(90deg, #111928, #111F2B);
+  animation: digita 20s steps(30) infinite, piscar 20s;
+}
+@keyframes digita{
+ 10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%{
+      width: 0;
+  }
+  5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85%{
+      width: calc(100% + 17px);
+  }
+
+}
+@keyframes palavras{
+  0%,100%{
+      content: "Eu sou Marcio David.";
+  }
+
+}
+@keyframes piscar{
+  0%{
+      border-left: 2px solid #323647;
+  }
+}
+
+@media (width < 1400px){
+  .txt-animado{
+    font-size: 2em;
+  }
+}
+
+@media (width < 425px){
+  .txt-animado{
+    font-size: 1em;
+  }
+}
+
 *::-webkit-scrollbar {
   width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: #374151;
+  background: #242734;
   border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #10b981;
+  background-color: #fbbb2f;
   border-radius: 14px;
 }
