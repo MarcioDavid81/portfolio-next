@@ -1,10 +1,12 @@
+import { Button } from "@/app/_components/button";
+import TechBadge from "@/app/_components/tech-badge";
 import Image from "next/image";
 
 export const HeroSection = () => {
   return (
     <>
-    <section className="w-full h-[955px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-32 lg:pb-{110px]">
-      <div className="container flex items-start gap-4 justify-between flex-col-reverse lg:flex-row">
+    <section className="w-full lg:h-[755px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-8 lg:pb-{110px]">
+      <div className="container flex items-start justify-between flex-col-reverse lg:flex-row">
         <div className="w-full lg:max-w-[530px]">
           <p className="font-mono">Hello world!</p>
           <div className="txt-animado">
@@ -33,15 +35,21 @@ export const HeroSection = () => {
           <p className="text-gray-400 text-sm sm:text-base pb-6">
             Seja bem vindo ao meu portfólio de projetos!
           </p>
-          <div>techs</div>
-          <div>contato</div>
+          <div className="flex flex-wrap gap-x-2 gap-y-3">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <TechBadge  key={index} name="JavaScript" />
+            ))}
+          </div>
+          <div className="mt-5">
+            <Button>Entre em contato</Button>
+          </div>
         </div>
         <Image
-          width={400}
-          height={400}
+          width={420}
+          height={404}
           src="/images/marcio.jpeg"
-          alt="profile-pic"
-          className="rounded-md"
+          alt="Foto de perfil Marcio David - Web Developer"
+          className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
         />
       </div>
     </section>

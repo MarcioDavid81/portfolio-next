@@ -13,7 +13,7 @@
 }
 
 .txt-animado {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 300;
 }
 
@@ -33,7 +33,7 @@
   right: -10px;
   animation: piscar 0.7s linear infinite;
   width: calc(100% + 17px);
-  background-image: linear-gradient(90deg, #111928, #111F2B);
+  background-color: #242734;
   animation: digita 20s steps(30) infinite, piscar 20s;
 }
 @keyframes digita{
