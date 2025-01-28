@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { cn } from "@/app/lib/utils";
 
 type SectionTitleProps = {

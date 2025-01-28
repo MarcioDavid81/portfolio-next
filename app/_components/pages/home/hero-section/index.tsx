@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Button } from "@/app/_components/button";
 import TechBadge from "@/app/_components/tech-badge";
 import Image from "next/image";
@@ -51,6 +52,9 @@ const MOCK_TECHS = [
   },
   {
     nome: "JWT",
+  },
+  {
+    nome: "Express",
   }
 ]
 

@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+
+
 const Toaster = () => {
     return ( <h1> Toaster</h1>
      );

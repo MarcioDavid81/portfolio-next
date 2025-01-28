@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client"
 
 import { cn } from '@/app/lib/utils'
@@ -18,7 +19,7 @@ export const NavItem = ({ label, href }: NavItemProps) => {
     <Link
       href={href}
       className={cn(
-        'text-gray-400 flex items-center gap-2 font-medium font-mono',
+        'text-gray-400 flex items-center gap-2 font-medium font-mono text-lg',
         isActive && 'text-gray-50',
       )}
     >

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 
 import Image from "next/image";
@@ -45,7 +46,7 @@ const Header = () => {
     <header
       className={`top-0 z-10 h-24 w-full flex items-center justify-center lg:fixed transition-all duration-500 ease-in-out ${
         scrolled &&
-        "lg:bg-secondary shadow-sm lg:shadow-primary lg:rounded-br-[50px]"
+        "lg:bg-secondary shadow-sm lg:shadow-primary lg:rounded-br-[100px]"
       }`}
     >
       <div className="container flex items-center justify-between">
@@ -64,7 +65,7 @@ const Header = () => {
             ))}
           </nav>
           <Link href="https://wa.link/fyvd8f" target="_blank" rel="noopener">
-            <Button>Contato</Button>
+            <Button className="bg-transparent">Contato</Button>
           </Link>
         </div>
       </div>
