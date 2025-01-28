@@ -27,6 +27,33 @@ const MOCK_SOCIAL = [
   }
 ]
 
+const MOCK_TECHS = [
+  {
+    nome: "NodeJS",
+  },
+  {
+    nome: "Prisma",
+  },
+  {
+    nome: "Next Auth",
+  },
+  {
+    nome: "Clerk",
+  },
+  {
+    nome: "Stripe",
+  },
+  {
+    nome: "Fetch API",
+  },
+  {
+    nome: "Zod",
+  },
+  {
+    nome: "JWT",
+  }
+]
+
 export const HeroSection = () => {
   return (
     <>
@@ -61,8 +88,8 @@ export const HeroSection = () => {
             Seja bem vindo ao meu portfólio de projetos!
           </p>
           <div className="flex flex-wrap gap-x-2 gap-y-3">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <TechBadge  key={index} name="JavaScript" />
+            {MOCK_TECHS.map((tech, index) => (
+              <TechBadge  key={index} name={tech.nome} />
             ))}
           </div>
           <div className="mt-6 lg:mt-10 flex sm:items-center sm:gap-5 sm:flex-row flex-col">
@@ -93,46 +120,6 @@ export const HeroSection = () => {
           className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
         />
       </div>
-    </section>
-    <section>
-        <div className="container">
-            <h2>Projetos</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="card">
-                <Image
-                width={400}
-                height={400}
-                src="/images/marcio.jpeg"
-                alt="profile-pic"
-                className="rounded-md"
-                />
-                <h3>Projeto 1</h3>
-                <p>Descrição do projeto 1</p>
-            </div>
-            <div className="card">
-                <Image
-                width={400}
-                height={400}
-                src="/images/marcio.jpeg"
-                alt="profile-pic"
-                className="rounded-md"
-                />
-                <h3>Projeto 2</h3>
-                <p>Descrição do projeto 2</p>
-            </div>
-            <div className="card">
-                <Image
-                width={400}
-                height={400}
-                src="/images/marcio.jpeg"
-                alt="profile-pic"
-                className="rounded-md"
-                />
-                <h3>Projeto 3</h3>
-                <p>Descrição do projeto 3</p>
-            </div>
-            </div>
-        </div>
     </section>
     </>
   );

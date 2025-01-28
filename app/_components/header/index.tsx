@@ -12,8 +12,8 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
-    label: "Cursos",
-    href: "/courses",
+    label: "Certificações",
+    href: "/certifications",
   },
   {
     label: "Projetos",
