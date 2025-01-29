@@ -1,10 +1,15 @@
 /* eslint-disable prettier/prettier */
 import TechBadge from "@/app/_components/tech-badge";
+import { cn } from "@/app/lib/utils";
 import Image from "next/image";
 
-const ExperienceItem = () => {
+type ExperienceItemProps = {
+  className?: string;
+}
+
+const ExperienceItem = ({className}: ExperienceItemProps) => {
   return (
-    <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
+    <div className={cn("grid grid-cols-[40px,1fr] gap-4 md:gap-10", className)}>
       <div className="flex flex-col items-center gap-4">
         <div className="rounded-full border border-gray-500 p-0.5 ">
           <Image
