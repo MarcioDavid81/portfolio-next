@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <header
-      className={`top-0 z-10 h-24 w-full flex items-center justify-center lg:fixed transition-all duration-500 ease-in-out ${
+      className={`top-0  z-10 h-24 w-full flex items-center justify-center lg:sticky transition-all duration-300 ease-in-out ${
         scrolled &&
         "lg:bg-secondary shadow-sm lg:shadow-primary lg:rounded-br-[100px]"
       }`}

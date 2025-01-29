@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import TechBadge from "@/app/_components/tech-badge";
 import Image from "next/image";
 
