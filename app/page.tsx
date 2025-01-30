@@ -27,23 +27,50 @@ const getPageData = async (): Promise<HomePageData> => {
           iconSvg
           name
           startDate
+        }         
+        highlightProjects {
+          slug
+          thumbnail {
+            url
+          }
+          title
+          shortDescription
+          tecnologies {
+            name
+          }
+        }
+      }
+      workExperiences {
+        companyLogo {
+          url
+        }
+        role
+        company
+        companyUrl
+        startDate
+        endDate
+        description {
+          raw
+        }
+        tecnologies {
+          name
         }
       }
     }
   `;
 
-  return fetchHygraphQuery(query, 60 * 60 * 24);
+  return fetchHygraphQuery(query, 60);
 };
 
 export default async function Home() {
-  const { page: pageData } = await getPageData();
+  const { page: pageData, workExperiences } = await getPageData();
 
   return (
     <>
       <HeroSection homeInfo={pageData} />
-      <KnownTechs />
-      <HighlightedProjects />
-      <WorkExperience />
+      <KnownTechs techs={pageData.knowTechs} />
+      <HighlightedProjects projects={pageData.highlightProjects} />
+      <WorkExperience experiences={workExperiences} />
     </>
   );
 }

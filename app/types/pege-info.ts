@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 
-import { KnowTechs } from "./projects"
+import { KnowTechs, Project } from "./projects"
 import type { RichTextContent } from '@graphcms/rich-text-types'
+import { WorkExperience } from "./work-experience"
 
 export type Social = {
     iconSvg: string
@@ -18,8 +19,10 @@ export type HomePageInfo = {
     }
     social: Social[]
     knowTechs: KnowTechs[]
+    highlightProjects: Project[]
 }
 
 export type HomePageData = {
     page: HomePageInfo
+    workExperiences: WorkExperience[]
 }

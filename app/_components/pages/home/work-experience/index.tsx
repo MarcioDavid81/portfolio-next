@@ -1,8 +1,13 @@
 /* eslint-disable prettier/prettier */
 import SectionTitle from "@/app/_components/section-title";
 import ExperienceItem from "./experience-item";
+import { WorkExperience as IWorkExperience } from "@/app/types/work-experience";
 
-const WorkExperience = () => {
+type WorkExperienceProps = {
+  experiences: IWorkExperience[];
+};
+
+const WorkExperience = ({experiences}: WorkExperienceProps) => {
   return (
     <section className="container flex py-16 gap-10 md:gap-4 lg:gap-16 flex-col md:flex-row">
       <div className="w-full">
@@ -10,11 +15,9 @@ const WorkExperience = () => {
 
       </div>
       <div className="flex flex-col gap-4">
-        <ExperienceItem />
-        <ExperienceItem />
-        <ExperienceItem />
-        <ExperienceItem />
-        <ExperienceItem />
+        {experiences.map(experience => (
+          <ExperienceItem key={experience.company} experience={experience} />
+        ))}
       </div>
     </section>
   );
