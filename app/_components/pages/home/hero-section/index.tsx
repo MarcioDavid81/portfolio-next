@@ -1,64 +1,30 @@
 /* eslint-disable prettier/prettier */
+"use client";
+
 import { Button } from "@/app/_components/button";
+import { CMSIcon } from "@/app/_components/cms-icon";
+import { RichText } from "@/app/_components/rich-text";
 import TechBadge from "@/app/_components/tech-badge";
+import { HomePageInfo } from "@/app/types/pege-info";
 import Image from "next/image";
 import {  HiArrowNarrowRight } from "react-icons/hi";
-import { TbBrandFacebook, TbBrandGithub, TbBrandInstagram, TbBrandLinkedin } from "react-icons/tb";
 
-const MOCK_SOCIAL = [
-  {
-    name: "GitHub",
-    url: "https://github.com/MarcioDavid81",
-    icon: <TbBrandGithub />,
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/marcio-david-a8152733/",
-    icon: <TbBrandLinkedin />,
-  },
-  {
-    name: "Facebook",
-    url: "https://www.facebook.com/marcio.david.754",
-    icon: <TbBrandFacebook />,
-  },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/o_marciodavid/",
-    icon: <TbBrandInstagram />,
+
+
+type HomeSectionProps = {
+  homeInfo: HomePageInfo;
+}
+
+
+export const HeroSection = ({homeInfo}: HomeSectionProps) => {
+
+  const handleContactClick = () => {
+    const contactForm = document.getElementById("contact-form");
+    if(contactForm) {
+      contactForm.scrollIntoView({ behavior: "smooth" });
+    }
   }
-]
 
-const MOCK_TECHS = [
-  {
-    nome: "NodeJS",
-  },
-  {
-    nome: "Prisma",
-  },
-  {
-    nome: "Next Auth",
-  },
-  {
-    nome: "Clerk",
-  },
-  {
-    nome: "Stripe",
-  },
-  {
-    nome: "Fetch API",
-  },
-  {
-    nome: "Zod",
-  },
-  {
-    nome: "JWT",
-  },
-  {
-    nome: "Express",
-  }
-]
-
-export const HeroSection = () => {
   return (
     <>
     <section className="w-full lg:h-[875px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-8 lg:pb-{110px]">
@@ -68,41 +34,21 @@ export const HeroSection = () => {
           <div className="txt-animado">
             <span></span>
           </div>
-          <p className="text-gray-400 pt-6 text-sm sm:text-base">
-            Estudante do Curso Superior de Tecnologia em Análise e
-            Desenvolvimento de Sistemas na Faculdade Cruzeiro do Sul.
-          </p>
-
-          <p className="text-gray-400 text-sm sm:text-base">
-            Determinado e comprometido em adquirir as competências necessárias
-            para me destacar neste novo campo e contribuir de forma
-            significativa para o setor de tecnologia, estou sempre em busca de
-            novos desafios e conhecimentos. Alem da faculdade, já concluí os
-            cursos de HTML 5, CSS 3 e de JavaScript, do professor Gustavo
-            Guanabara, ambos em suas versões básicas.
-          </p>
-
-          <p className="text-gray-400 text-sm sm:text-base">
-            Além dos cursos citados, atualmente estudo JavaScript avançado,
-            Bootstrap e UI/UX Design na Escola de Cursos Origamid do professor
-            André Rafael. E por curiosidade, estou estudando Angular 17.
-          </p>
-
-          <p className="text-gray-400 text-sm sm:text-base pb-6">
-            Seja bem vindo ao meu portfólio de projetos!
-          </p>
+          <div className="text-gray-400 my-6 text-sm sm:text-base">
+            <RichText content={homeInfo.introduction.raw} />
+          </div>
           <div className="flex flex-wrap gap-x-2 gap-y-3">
-            {MOCK_TECHS.map((tech, index) => (
-              <TechBadge  key={index} name={tech.nome} />
+            {homeInfo.tecnologies.map((tech) => (
+              <TechBadge key={tech.name} name={tech.name} />
             ))}
           </div>
           <div className="mt-6 lg:mt-10 flex sm:items-center sm:gap-5 sm:flex-row flex-col">
-            <Button className="shadow-button w-max">
+            <Button className="shadow-button w-max" onClick={handleContactClick}>
               Entre em contato
               <HiArrowNarrowRight size={18} />
             </Button>
             <div className="text-2xl text-primary flex items-center h-20 gap-3 md:text-4xl">
-              {MOCK_SOCIAL.map((social, index) => (
+              {homeInfo.social.map((social, index) => (
                 <a
                   key={`social-${index}`}
                   href={social.url}
@@ -110,7 +56,7 @@ export const HeroSection = () => {
                   rel="noreferrer"
                   className="hover:text-gray-100 transition-colors"
                 >
-                  {social.icon}
+                  <CMSIcon icon={social.iconSvg} />
                 </a>
               ))}
             </div>
@@ -119,7 +65,7 @@ export const HeroSection = () => {
         <Image
           width={420}
           height={404}
-          src="/images/marcio.jpeg"
+          src={homeInfo.profilePicture.url}
           alt="Foto de perfil Marcio David - Web Developer"
           className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
         />

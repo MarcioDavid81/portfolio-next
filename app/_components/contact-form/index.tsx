@@ -40,7 +40,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-16 px-6 md:py-34 flex item justify-center bg-gray-950">
+    <section id="contact-form" className="py-16 px-6 md:py-34 flex item justify-center bg-gray-950">
       <div className="w-full max-w-[420px] mx-auto">
         <SectionTitle
           className="items-center text-center"
