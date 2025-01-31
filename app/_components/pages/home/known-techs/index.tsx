@@ -1,19 +1,8 @@
 /* eslint-disable prettier/prettier */
 import SectionTitle from "@/app/_components/section-title";
 import KnownTech from "./known-tech";
-import {
-  TbBrandBootstrap,
-  TbBrandCss3,
-  TbBrandHtml5,
-  TbBrandJavascript,
-  TbBrandNextjs,
-  TbBrandReact,
-  TbBrandTailwind,
-  TbBrandTypescript,
-} from "react-icons/tb";
 import { HorizontalDivider } from "@/app/_components/divider/horizontal";
 import { KnowTechs } from "@/app/types/projects";
-import { CMSIcon } from "@/app/_components/cms-icon";
 
 type KnowTechsProps = {
   techs: KnowTechs[];

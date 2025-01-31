@@ -15,19 +15,21 @@ const HighlightedProjects = ({projects}: HighlightedProjectsProps) => {
         <section className="container py-16">
             <SectionTitle subtitle="destaques" title="Projetos em Destaque" />
             <HorizontalDivider className="mb-16" />
-            {projects.map(project => (
-                <div key={project.slug}>
-                    <ProgectCard project={project} />
-                    <HorizontalDivider className="my-16" />
-                </div>
-            ))}
-            <p className="flex items-center gap-1.5">
-                <span className="text-gray-400">Se interessou?</span>
-                <Link href="/projects" className="text-gray-100 hover:text-primary inline-flex">
-                    Veja todos
-                    <HiArrowNarrowRight size={20} />
-                </Link>
-            </p>
+            <div>
+                {projects?.map((project) => (
+                    <div key={project.slug}>
+                        <ProgectCard project={project} />
+                        <HorizontalDivider className="my-16" />
+                    </div>
+                ))}
+                <p className="flex items-center gap-1.5">
+                    <span className="text-gray-400">Se interessou?</span>
+                    <Link href="/projects" className="text-gray-100 hover:text-primary inline-flex">
+                        Veja todos
+                        <HiArrowNarrowRight size={20} />
+                    </Link>
+                </p>
+            </div>
         </section>
      );
 }

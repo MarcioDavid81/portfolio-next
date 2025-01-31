@@ -6,6 +6,10 @@ import WorkExperience from "./_components/pages/home/work-experience";
 import { HomePageData } from "./types/pege-info";
 import { fetchHygraphQuery } from "./utils/fetch-hygraph-query";
 
+export const metadata = {
+  title: "Home",
+}
+
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
     query PageInfoQuery {

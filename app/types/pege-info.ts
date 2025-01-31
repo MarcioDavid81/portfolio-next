@@ -9,6 +9,20 @@ export type Social = {
     url: string
 }
 
+export type ProjectPageData = {
+    project: Project
+  }
+  
+  export type ProjectsPageData = {
+    projects: Project[]
+  }
+  
+  export type ProjectsPageStaticData = {
+    projects: {
+      slug: string
+    }[]
+  }
+
 export type HomePageInfo = {
     introduction: {
         raw: RichTextContent;

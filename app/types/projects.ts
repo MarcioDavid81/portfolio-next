@@ -26,10 +26,11 @@ export type Project = {
     pageThumbnail: {
         url: string;
     }
-    section: ProjectSection[]
+    sections: ProjectSection[]
     description: {
         raw: RichTextContent;
+        text: string;
     }
     liveProjectUrl?: string;
-    githubUrl?: string;
+    gthubUrl?: string;
 }
