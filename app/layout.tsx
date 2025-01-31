@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { ReactNode } from 'react'
@@ -6,6 +7,18 @@ import Footer from './_components/footer'
 import ContactForm from './_components/contact-form'
 import { BackToTop } from './_components/back-to-top'
 import { Toaster } from './_components/toaster'
+
+export const metadata = {
+  title: {
+    default: 'MD Web Developer',
+    template: '%s | MD Web Developer',
+  },
+  icons: [
+    {
+      url: '/favicon.ico',
+    }
+  ]
+}
 
 const inter = Inter({
   variable: '--font-inter',
