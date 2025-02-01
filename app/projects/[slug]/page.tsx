@@ -64,19 +64,19 @@ const Project = async ({params: {slug}}: ProjectProps) => {
      );
 }
 
-export async function generetaStaticParams() {
-    const query = `
-      query ProjectsSlugQuery(){
-        projects (first: 100){
-          slug
-        }
-      }
-    `
-    const {projects} = await fetchHygraphQuery<ProjectsPageStaticData>(query)
+// export async function generetaStaticParams() {
+//     const query = `
+//       query ProjectsSlugQuery(){
+//         projects (first: 100){
+//           slug
+//         }
+//       }
+//     `
+//     const {projects} = await fetchHygraphQuery<ProjectsPageStaticData>(query)
 
-    return projects
+//     return projects
 
-} 
+// } 
 
 // eslint-disable-next-line spaced-comment
 /*SEO*/
