@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { cn } from '@/app/lib/utils'
 import { ButtonHTMLAttributes } from 'react'
 
@@ -14,5 +15,6 @@ export const Button = ({ children, className, ...props }: ButtonProps) => {
     >
       {children}
     </button>
-  )
+ 
+)
 }

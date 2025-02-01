@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { cn } from '@/app/lib/utils'
 import NextLink from 'next/link'
 import { ComponentProps } from 'react'
@@ -15,5 +16,6 @@ export const Link = ({ className, children, ...props }: LinkProps) => {
     >
       {children}
     </NextLink>
-  )
+  
+)
 }
