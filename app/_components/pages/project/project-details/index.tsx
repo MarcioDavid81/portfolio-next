@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-
+"use client";
 import { Button } from "@/app/_components/button";
 import SectionTitle from "@/app/_components/section-title";
 import TechBadge from "@/app/_components/tech-badge";
@@ -9,6 +9,8 @@ import { Link } from "@/app/_components/link";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { RichText } from "@/app/_components/rich-text";
 import { Project } from "@/app/types/projects";
+import { fadeUpAnimation, techBadgeAnimation } from "@/app/lib/animations";
+import { motion } from "framer-motion";
 
 type ProjectDetailsProps = {
   project: Project;
@@ -17,26 +19,41 @@ type ProjectDetailsProps = {
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {
   return (
     <section className="w-full sm:min-h-[750px] flex flex-col items-center justify-end relative pb-10 sm:pb-24 py-24 px-6 overflow-hidden">
-      <div
+      <motion.div
         className="absolute inset-0 z-[-1]"
         style={{
           background: `url(/images/hero-bg.png) no-repeat center/cover, url(${project.pageThumbnail.url}) no-repeat center/cover`,
         }}
+        initial={{ opacity: 0, scale: 1.3 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
       />
       <SectionTitle
         title={project.title}
         subtitle="projeto"
         className="text-center items-center sm:[&>h3]:text-4xl"
       />
-      <div className="text-gray-400 text-center max-w-[640px] my-4 sm:my-6 text-sm sm:text-base">
+      <motion.div
+        className="text-gray-400 text-center max-w-[640px] my-4 sm:my-6 text-sm sm:text-base"
+        {...fadeUpAnimation} 
+      >
         <RichText content={project.description.raw} />
-      </div>
+      </motion.div>
       <div className="flex flex-wrap gap-2 w-full items-center justify-center max-w-[330px]">
-        {project.tecnologies.map((tech) => (
-          <TechBadge key={tech.name} name={tech.name} />
+        {project.tecnologies.map((tech, i) => (
+          <TechBadge
+            key={tech.name}
+            name={tech.name}
+            {...techBadgeAnimation}
+            transition={{ duration: 0.3, delay: i * 0.1 }}
+          />
         ))}
       </div>
-      <div className="my-6 sm:my-12 flex items-center gap-2 sm:gap-4 flex-col sm:flex-row">
+      <motion.div
+        className="my-6 sm:my-12 flex items-center gap-2 sm:gap-4 flex-col sm:flex-row"
+        {...fadeUpAnimation}
+        transition={{delay: 0.5}}  
+      >
         {project?.gthubUrl && (
           <a href={project.gthubUrl} target="_blank" rel="noreferrer">
             <Button className="min-w-[180px]">
@@ -53,11 +70,18 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
             </Button>
           </a>
         )}
-      </div>
-      <Link href="/projects" className="text-gray-400 text-sm sm:text-base">
-        <HiArrowNarrowLeft size={20} />
-        Voltar para projetos
-      </Link>
+      </motion.div>
+      <motion.div
+        initial={{opacity: 0, x: 100}}
+        whileInView={{opacity: 1, x: 0}}
+        exit={{opacity: 0, x: 100}}
+        transition={{duration: 0.5, delay: 0.5}}
+      >
+        <Link href="/projects" className="text-gray-400 text-sm sm:text-base">
+          <HiArrowNarrowLeft size={20} />
+          Voltar para projetos
+        </Link>
+      </motion.div>
     </section>
   );
 };

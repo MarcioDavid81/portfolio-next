@@ -59,7 +59,7 @@ const Project = async ({params: {slug}}: ProjectProps) => {
     return ( 
         <>
             <ProjectDetails project={project} />
-            <ProjectSections section={project.sections} />
+            <ProjectSections sections={project.sections} />
         </>
      );
 }

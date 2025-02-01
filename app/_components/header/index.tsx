@@ -6,6 +6,7 @@ import Link from "next/link";
 import { NavItem } from "./nav-item";
 import { useEffect, useState } from "react";
 import { Button } from "../button";
+import { motion } from "framer-motion";
 
 const NAV_ITEMS = [
   {
@@ -43,11 +44,14 @@ const Header = () => {
   }, []);
 
   return (
-    <header
+    <motion.header
       className={`top-0  z-10 h-24 w-full flex items-center justify-center lg:sticky transition-all duration-300 ease-in-out ${
         scrolled &&
         "lg:bg-secondary shadow-sm lg:shadow-primary lg:rounded-br-[100px]"
       }`}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity:1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="container flex items-center justify-between">
         <Link href="/">
@@ -69,7 +73,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

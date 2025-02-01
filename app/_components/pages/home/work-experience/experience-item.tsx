@@ -1,12 +1,15 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable prettier/prettier */
+"use client"
+
 import { RichText } from "@/app/_components/rich-text";
 import TechBadge from "@/app/_components/tech-badge";
+import { fadeUpAnimation, techBadgeAnimation } from "@/app/lib/animations";
 import { cn } from "@/app/lib/utils";
 import { WorkExperience } from "@/app/types/work-experience";
 import { differenceInMonths, differenceInYears, format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 type ExperienceItemProps = {
@@ -37,7 +40,11 @@ const ExperienceItem = ({className, experience}: ExperienceItemProps) => {
     : `${months} mes${months > 1 ? 'es' : ''}`
 
   return (
-    <div className={cn("grid grid-cols-[40px,1fr] gap-4 md:gap-10", className)}>
+    <motion.div
+      className={cn("grid grid-cols-[40px,1fr] gap-4 md:gap-10", className)}
+      {...fadeUpAnimation}
+      transition={{duration:0.5}}
+    >
       <div className="flex flex-col items-center gap-4">
         <div className="rounded-full border border-gray-500 p-0.5 ">
           <Image
@@ -70,12 +77,17 @@ const ExperienceItem = ({className, experience}: ExperienceItemProps) => {
         </div>
         <p className="text-gray-400 text-sm mb-3 mt-6 font-semibold">Competências</p>
         <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[450px] mb-8">
-          {experience.tecnologies.map(tech => (
-            <TechBadge key={`experience-${experience.company}-tech-${tech.name}`} name={tech.name} />
+          {experience.tecnologies.map((tech, i) => (
+            <TechBadge
+              key={`experience-${experience.company}-tech-${tech.name}`}
+              name={tech.name}
+              {...techBadgeAnimation}
+              transition={{duration:0.2, delay: i * 0.1}}
+            />
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

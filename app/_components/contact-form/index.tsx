@@ -73,7 +73,7 @@ export const ContactForm = () => {
             {...register('message')}
           />
           <div className="relative w-max mx-auto mt-6">
-            <Button className="z-[2] relative shadow-button">
+            <Button className="z-[2] relative shadow-button" disabled={isSubmitting}>
               Enviar Mensagem
               <HiArrowNarrowRight size={18} />
             </Button>
