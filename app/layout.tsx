@@ -10,7 +10,7 @@ import { Toaster } from './_components/toaster'
 
 export const metadata = {
   title: {
-    default: 'MD Web Developer',
+    default: 'Home',
     template: '%s | MD Web Developer',
   },
   icons: [

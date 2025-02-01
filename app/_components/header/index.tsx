@@ -7,6 +7,9 @@ import { NavItem } from "./nav-item";
 import { useEffect, useState } from "react";
 import { Button } from "../button";
 import { motion } from "framer-motion";
+import { IoCloseSharp, IoMenu } from "react-icons/io5";
+import { set } from "date-fns";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   {
@@ -43,6 +46,14 @@ const Header = () => {
     };
   }, []);
 
+  const pathname = usePathname();
+
+  const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMenuMobileOpen(false);
+  }, [pathname]);
+
   return (
     <motion.header
       className={`top-0  z-10 h-24 w-full flex items-center justify-center lg:sticky transition-all duration-300 ease-in-out ${
@@ -50,7 +61,7 @@ const Header = () => {
         "lg:bg-secondary shadow-sm lg:shadow-primary lg:rounded-br-[100px]"
       }`}
       initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity:1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container flex items-center justify-between">
@@ -58,20 +69,51 @@ const Header = () => {
           <Image
             src={"/images/logo.png"}
             alt="Logo MD Web Developer"
-            width={158}
+            width={100}
             height={49}
           />
         </Link>
-        <div className="lg:flex items-center gap-10">
+
+        {isMenuMobileOpen ? <IoCloseSharp
+                onClick={() => setIsMenuMobileOpen(false)}
+                size={40}
+                className="text-primary cursor-pointer hidden max-md:block"
+              />: <IoMenu
+              size={40}
+              className="text-primary cursor-pointer hidden max-md:block"
+              onClick={() => setIsMenuMobileOpen(true)}
+            />}
+
+        {/* MENU DESKTOP */}
+        <nav className="hidden md:flex items-center gap-10">
           <nav className="flex items-center gap-4 sm:gap-10">
             {NAV_ITEMS.map((item) => (
               <NavItem {...item} key={item.label} />
             ))}
           </nav>
           <Link href="https://wa.link/fyvd8f" target="_blank" rel="noopener">
-            <Button className="bg-transparent">Contato</Button>
+            <Button className="bg-transparent text-md">Contato</Button>
           </Link>
-        </div>
+        </nav>
+
+        {/* MENU MOBILE */}
+        <motion.nav
+          className="fixed right-0 top-[96px] z-10 hidden h-screen w-[70%] bg-secondary px-8 py-4 data-[open=false]:translate-x-full max-md:block"
+          data-open={isMenuMobileOpen}
+          onClick={() => setIsMenuMobileOpen(false)}
+          initial={{ x: "100%" }}
+          animate={{ x: isMenuMobileOpen ? 0 : "100%" }}
+          transition={{ duration: 0.5 }}
+
+        >
+          <div>
+            {NAV_ITEMS.map((item) => (
+              <div key={item.label} className="mt-5 py-4">
+                <NavItem {...item}  />
+              </div>
+            ))}
+          </div>
+        </motion.nav>
       </div>
     </motion.header>
   );
