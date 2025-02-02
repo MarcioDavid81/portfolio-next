@@ -54,6 +54,11 @@ const Header = () => {
     setIsMenuMobileOpen(false);
   }, [pathname]);
 
+  // IMPEDE O SCROOL DA PÁGINA QUANDO O MENU MOBILE ESTIVER ABERTO
+  useEffect(() => {
+    document.body.style.overflow = isMenuMobileOpen ? "hidden" : "auto";
+  }, [isMenuMobileOpen]);
+
   return (
     <motion.header
       className={`top-0  z-10 h-24 w-full flex items-center justify-center lg:sticky transition-all duration-300 ease-in-out ${
@@ -73,19 +78,29 @@ const Header = () => {
             height={49}
           />
         </Link>
-
-        {isMenuMobileOpen ? <IoCloseSharp
-                onClick={() => setIsMenuMobileOpen(false)}
-                size={40}
-                className="text-primary cursor-pointer hidden max-md:block"
-              />: <IoMenu
-              size={40}
-              className="text-primary cursor-pointer hidden max-md:block"
-              onClick={() => setIsMenuMobileOpen(true)}
-            />}
+        {/* ALTERA O ÍCONE DO MENU DE ACORDO COM O ESTADO */}
+        {isMenuMobileOpen ? (
+          <IoCloseSharp
+            onClick={() => setIsMenuMobileOpen(false)}
+            size={40}
+            className="text-primary cursor-pointer hidden max-md:block"
+          />
+        ) : (
+          <IoMenu
+            size={40}
+            className="text-primary cursor-pointer hidden max-md:block"
+            onClick={() => setIsMenuMobileOpen(true)}
+          />
+        )}
+        {/* DIV CEGA PARA CRIAR O EFEITO DE OPACIDADE DO BODY */}
+        {isMenuMobileOpen && (
+          <div
+            className="fixed inset-0 bg-secondary bg-opacity-75 top-[96px] z-10"
+          />
+        )}
 
         {/* MENU DESKTOP */}
-        <nav className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-10">
           <nav className="flex items-center gap-4 sm:gap-10">
             {NAV_ITEMS.map((item) => (
               <NavItem {...item} key={item.label} />
@@ -94,7 +109,7 @@ const Header = () => {
           <Link href="https://wa.link/fyvd8f" target="_blank" rel="noopener">
             <Button className="bg-transparent text-md">Contato</Button>
           </Link>
-        </nav>
+        </div>
 
         {/* MENU MOBILE */}
         <motion.nav
@@ -104,14 +119,16 @@ const Header = () => {
           initial={{ x: "100%" }}
           animate={{ x: isMenuMobileOpen ? 0 : "100%" }}
           transition={{ duration: 0.5 }}
-
         >
-          <div>
+          <div className="flex flex-col">
             {NAV_ITEMS.map((item) => (
               <div key={item.label} className="mt-5 py-4">
-                <NavItem {...item}  />
+                <NavItem {...item} />
               </div>
             ))}
+          <Link href="https://wa.link/fyvd8f" target="_blank" rel="noopener" className="mt-20">
+            <Button className="bg-transparent text-md">Contato</Button>
+          </Link>
           </div>
         </motion.nav>
       </div>
