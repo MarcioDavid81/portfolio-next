@@ -7,8 +7,7 @@ import { NavItem } from "./nav-item";
 import { useEffect, useState } from "react";
 import { Button } from "../button";
 import { motion } from "framer-motion";
-import { IoCloseSharp, IoMenu } from "react-icons/io5";
-import { set } from "date-fns";
+import { IoClose, IoMenu } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
@@ -80,7 +79,7 @@ const Header = () => {
         </Link>
         {/* ALTERA O ÍCONE DO MENU DE ACORDO COM O ESTADO */}
         {isMenuMobileOpen ? (
-          <IoCloseSharp
+          <IoClose
             onClick={() => setIsMenuMobileOpen(false)}
             size={40}
             className="text-primary cursor-pointer hidden max-md:block"
@@ -96,6 +95,8 @@ const Header = () => {
         {isMenuMobileOpen && (
           <div
             className="fixed inset-0 bg-secondary bg-opacity-75 top-[96px] z-10"
+            data-open={isMenuMobileOpen}
+            onClick={() => setIsMenuMobileOpen(false)}
           />
         )}
 
